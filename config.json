@@ -9,15 +9,14 @@
   },
   "add": {
     "dependencies": {
-      "jquery": "~2.2.4",
-      "bootstrap-sass": "^3.3.7"
+      "materialize-css": "^0.99.0"
     },
     "vendorJs": [
-      "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js"
+      "./node_modules/materialize-css/dist/js/materialize.js"
     ],
     "vendorScss": [
-      "@import '../scss/abstracts/_bootstrap-variables.scss';",
-      "@import '../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';"
+      "@import '../scss/abstracts/_materialize-variables.scss';",
+      "@import '../../node_modules/materialize-css/sass/materialize.scss';"
     ]
   }
 }
