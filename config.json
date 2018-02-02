@@ -9,15 +9,14 @@
   },
   "add": {
     "dependencies": {
-      "jquery": "~2.2.4",
-      "bootstrap-sass": "^3.3.7"
+      "bootstrap-sass": "^4.0.0"
     },
     "vendorJs": [
-      "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js"
+      "./node_modules/bootstrap/dist/js/bootstrap.min.js"
     ],
     "vendorScss": [
       "@import '../scss/abstracts/_bootstrap-variables.scss';",
-      "@import '../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';"
+      "@import '../../node_modules/bootstrap/scss/bootstrap.scss';"
     ]
   }
 }
