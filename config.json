@@ -9,7 +9,7 @@
   },
   "add": {
     "dependencies": {
-      "bootstrap-sass": "^4.0.0"
+      "bootstrap": "^4.0.0"
     },
     "vendorJs": [
       "./node_modules/bootstrap/dist/js/bootstrap.min.js"
