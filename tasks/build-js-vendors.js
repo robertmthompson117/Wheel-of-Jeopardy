@@ -3,34 +3,34 @@
  */
 'use strict';
 
-const gulp       = require('gulp'),
-      filesExist = require('files-exist'),
-      uglify     = require('gulp-uglify'),
-      concat     = require('gulp-concat'),
-      fs         = require('fs'),
-      path       = require('path');
+const gulp = require('gulp'),
+  uglify = require('gulp-uglify'),
+  concat = require('gulp-concat'),
+  fs = require('fs'),
+  path = require('path'),
+  stream = require('merge-stream')();
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return () => {
+  return (cb) => {
     const jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
 
-    return gulp.src(filesExist(jsVendors))
-      .pipe(concat(options.vendorJsMin))
-      .pipe(uglify())
-      .pipe(gulp.dest(`./${options.dest}/js`))
-      .on('end', () => {
-        // create empty vendor.min.js if vendors are empty
-        if (!jsVendors.length) {
-          const jsPath = __dirname + '/../assets/js/';
+    if (jsVendors.length) {
+      return gulp.src(jsVendors)
+        .pipe(concat(options.vendorJsMin))
+        .pipe(uglify())
+        .pipe(gulp.dest(`./${options.dest}/js`))
+    }
 
-          if (!fs.existsSync(jsPath)){
-            fs.mkdirSync(jsPath);
-          }
+    const jsPath = __dirname + '/../assets/js/';
 
-          fs.writeFileSync(path.resolve(`${jsPath}/${options.vendorJsMin}`), '');
-        }
-      });
+    if (!fs.existsSync(jsPath)) {
+      fs.mkdirSync(jsPath);
+    }
+
+    fs.writeFileSync(path.resolve(`${jsPath}/${options.vendorJsMin}`), '');
+
+    return cb();
   };
 
 };
