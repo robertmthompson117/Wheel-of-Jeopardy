@@ -5,13 +5,11 @@
 import './requirejs-config';
 
 import DE from './modules/dots';
-import Notify from './modules/notify';
 
 requirejs(['jquery', 'vendor'], ($) => {
   'use strict';
 
   $(() => {
     DE.dotsEffect($);
-    Notify.notify($);
   });
 });
