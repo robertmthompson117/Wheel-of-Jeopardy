@@ -8,6 +8,7 @@ const gulp = require('gulp'),
   concat = require('gulp-concat'),
   fs = require('fs'),
   path = require('path'),
+  fsExtra = require('fs-extra'),
   stream = require('merge-stream')();
 
 module.exports = function (options) {
@@ -19,13 +20,13 @@ module.exports = function (options) {
       return gulp.src(jsVendors)
         .pipe(concat(options.vendorJsMin))
         .pipe(uglify())
-        .pipe(gulp.dest(`./${options.dest}/js`))
+        .pipe(gulp.dest(`./${options.dest}/js`));
     }
 
     const jsPath = __dirname + '/../assets/js/';
 
     if (!fs.existsSync(jsPath)) {
-      fs.mkdirSync(jsPath);
+      fsExtra.ensureDirSync(jsPath);
     }
 
     fs.writeFileSync(path.resolve(`${jsPath}/${options.vendorJsMin}`), '');
