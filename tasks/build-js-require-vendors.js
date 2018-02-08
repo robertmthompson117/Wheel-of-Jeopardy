@@ -4,7 +4,6 @@
 'use strict';
 
 const gulp       = require('gulp'),
-      filesExist = require('files-exist'),
       rename     = require('gulp-rename'),
       uglify     = require('gulp-uglify'),
       stream     = require('merge-stream')();
@@ -14,11 +13,11 @@ module.exports = function(options) {
   return (cb) => {
     const jsVendors = require(`../${options.src}/vendor_entries/${options.requireVendorsJs}`);
 
-    if (jsVendors.length) {
+    if (Object.values(jsVendors).length) {
       for (let name in jsVendors) {
         const path = jsVendors[name];
   
-        stream.add(gulp.src(filesExist(path))
+        stream.add(gulp.src(path)
           .pipe(uglify())
           .pipe(rename({
             basename: name
