@@ -26,14 +26,14 @@
 (() => {
   'use strict';
 
-  const cfg         = require('./gulp-config.js'),
-        self        = this,
-        gulp        = require('gulp'),
-        del         = require('del'),
-        path        = require('path'),
-        notifier    = require('node-notifier'),
-        gutil       = require('gulp-util'),
-        browserSync = require('browser-sync').create();
+  const cfg     = require('./gulp-config.js'),
+    self        = this,
+    gulp        = require('gulp'),
+    del         = require('del'),
+    path        = require('path'),
+    notifier    = require('node-notifier'),
+    gutil       = require('gulp-util'),
+    browserSync = require('browser-sync').create();
 
   /**
    * Require gulp task from file
@@ -220,74 +220,65 @@
   /**
    * Default Gulp task
    */
-  gulp.task('default', (callback) => {
-      runSequence(
-        cfg.task.cleanBuild,
-        [
-          cfg.task.buildCustomJs,
-          cfg.task.buildJsVendors,
-          cfg.task.buildJsRequireVendors,
-          cfg.task.buildSass,
-          cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
-          cfg.task.jsHint,
-          cfg.task.imageMin
-        ],
-        cfg.task.copyFolders,
-        [
-          cfg.task.browserSync,
-          cfg.task.watch
-        ]
-      );
-    }
-  );
+  gulp.task('default', gulp.series(
+    cfg.task.cleanBuild,
+    gulp.parallel(
+      cfg.task.buildCustomJs,
+      cfg.task.buildJsVendors,
+      cfg.task.buildJsRequireVendors,
+      cfg.task.buildSass,
+      cfg.task.buildStylesVendors,
+      cfg.task.htmlHint,
+      cfg.task.jsHint,
+      cfg.task.imageMin
+    ),
+    cfg.task.copyFolders,
+    gulp.parallel(
+      cfg.task.browserSync,
+      cfg.task.watch
+    )
+  ));
 
   /**
    * Dev Gulp task without usage of browserSync
    */
-  gulp.task('dev', (callback) => {
-      runSequence(
-        cfg.task.cleanBuild,
-        [
-          cfg.task.buildCustomJs,
-          cfg.task.buildJsVendors,
-          cfg.task.buildJsRequireVendors,
-          cfg.task.buildSass,
-          cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
-          cfg.task.jsHint,
-          cfg.task.imageMin
-        ],
-        cfg.task.copyFolders,
-        cfg.task.watch
-      );
-    }
-  );
+  gulp.task('dev', gulp.series(
+    cfg.task.cleanBuild,
+    gulp.parallel(
+      cfg.task.buildCustomJs,
+      cfg.task.buildJsVendors,
+      cfg.task.buildJsRequireVendors,
+      cfg.task.buildSass,
+      cfg.task.buildStylesVendors,
+      cfg.task.htmlHint,
+      cfg.task.jsHint,
+      cfg.task.imageMin
+    ),
+    cfg.task.copyFolders,
+    cfg.task.watch
+  ));
 
   /**
    * Creating production folder without unnecessary files
    */
-  gulp.task('production', (callback) => {
-      runSequence(
-        [
-          cfg.task.cleanProd,
-          cfg.task.cleanBuild
-        ],
-        [
-          cfg.task.buildCustomJs,
-          cfg.task.buildJsVendors,
-          cfg.task.buildJsRequireVendors,
-          cfg.task.buildSassProd,
-          cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
-          cfg.task.jsHint,
-          cfg.task.imageMin
-        ],
-        cfg.task.copyFolders,
-        cfg.task.copyFoldersProduction
-      );
-    }
-  );
+  gulp.task('production', gulp.series(
+    gulp.parallel(
+      cfg.task.cleanProd,
+      cfg.task.cleanBuild
+    ),
+    gulp.parallel(
+      cfg.task.buildCustomJs,
+      cfg.task.buildJsVendors,
+      cfg.task.buildJsRequireVendors,
+      cfg.task.buildSassProd,
+      cfg.task.buildStylesVendors,
+      cfg.task.htmlHint,
+      cfg.task.jsHint,
+      cfg.task.imageMin
+    ),
+    cfg.task.copyFolders,
+    cfg.task.copyFoldersProduction
+  ));
 
   /**
    * Remove image(s) from build folder if corresponding
