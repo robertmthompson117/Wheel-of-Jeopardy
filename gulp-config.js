@@ -25,6 +25,7 @@ module.exports = {
     buildJsRequire: 'build-js-require',
     buildJsRequireVendors: 'build-js-require-vendors',
     buildSass: 'build-sass',
+    buildSassFiles: 'compile-sass-files',
     buildSassProd: 'build-sass-production',
     buildStylesVendors: 'build-styles-vendors',
     imageMin: 'image-min',
@@ -40,7 +41,13 @@ module.exports = {
     versions: 'last 4 versions'
   },
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
-  getPathesToCopyForProduction: function() {
+  getPathesForSassCompiling: function () {
+    return {
+      files: [`${this.folder.src}/custom-sass/**`],
+      isGcmq: false
+    };
+  },
+  getPathesToCopyForProduction: function () {
     return [
       './**/*',
       `!{${this.folder.src},${this.folder.src}/**}`,
@@ -68,7 +75,7 @@ module.exports = {
       '!.eslintrc',
     ];
   },
-  getPathesToCopy: function() {
+  getPathesToCopy: function () {
     return [
       `./${this.folder.src}/**`,
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
