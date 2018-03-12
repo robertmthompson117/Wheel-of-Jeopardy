@@ -2,7 +2,7 @@
 
 >  A modern Web starter kit for projects
 
-![node](http://img.shields.io/badge/node-4.0.x-blue.svg) ![npm](http://img.shields.io/badge/npm-2.13.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
+![node](http://img.shields.io/badge/node-6.13.x-blue.svg) ![npm](https://img.shields.io/badge/npm-4.2.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
 
 
 ## Overview
@@ -81,13 +81,13 @@ To take advantage of Web Starter Kit you need to:
 ### [Node.js](https://nodejs.org)
 
 Bring up a terminal and type `node --version`.
-Node should respond with a version at or above 4.0.x.
+Node should respond with a version at or above 6.0.x.
 If you need to install Node, go to [nodejs.org](https://nodejs.org) and click on the big green Install button.
 
 ### [Gulp](http://gulpjs.com)
 
 Bring up a terminal and type `gulp --version`.
-If Gulp is installed it should return a version number at or above 3.9.x.
+If Gulp is installed it should return a version number at or above 4.0.x.
 If you need to install/upgrade Gulp, open up a terminal and type in the following:
 
 ```sh
