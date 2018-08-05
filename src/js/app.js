@@ -4,13 +4,21 @@
 // Feel free with using ES6 here.
 
 import DE from './modules/dots';
+import Wheel from './modules/Wheel';
 
 ( ($) => {
   'use strict';
 
+
   // When DOM is ready
   $(() => {
-    DE.dotsEffect();
+      // LocalStorage('user', '1');
+      // console.log(LocalStorage('user'));
+      DE.dotsEffect();
+
+      let theWheel = new Wheel("test1", "test2", "test3", "test4", "test5", "test6");
+      theWheel.setupSpinningListener($("#spinWheel"), theWheel);
+
   });
 
 })(jQuery);
